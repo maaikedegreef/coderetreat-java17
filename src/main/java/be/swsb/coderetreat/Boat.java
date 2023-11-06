@@ -4,9 +4,10 @@ import java.util.ArrayList;
 
 public class Boat {
     private ArrayList<Position> positions = new ArrayList<Position>();
-    public Boat(int x, int y) {
+    public Boat(int x, int y, Orientation orientation) {
         for (int i = 0; i < 3; i++) { //hardcoded 3
-            positions.add(new Position(x+i,y)); //hardcoded horizontally
+            if(orientation == Orientation.HORIZONTAL) positions.add(new Position(x+i,y));
+            if(orientation == Orientation.VERTICAL) positions.add(new Position(x,y+i));
         }
     }
 

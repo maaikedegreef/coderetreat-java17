@@ -12,8 +12,8 @@ public class Game {
         return boats.size();
     }
 
-    public void placeBoat(Position position) {
-        Boat boat = new Boat(position.getX(), position.getY());
+    public void placeBoat(Position position, Orientation orientation) {
+        Boat boat = new Boat(position.getX(), position.getY(), orientation);
         boats.add(boat);
     }
 

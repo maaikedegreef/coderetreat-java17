@@ -32,14 +32,14 @@ public class BattleshipTest {
     @Test
     public void game_placingOneShipHorizontallyOnX1Y1_NumberOfBoatsEqualsToOne() {
         Game game = new Game();
-        game.placeBoat(new Position(1, 1));
+        game.placeBoat(new Position(1, 1), Orientation.HORIZONTAL);
         assertEquals(game.getNumberOfBoats(), 1);
     }
 
     @Test
     public void game_placingOneShipHorizontallyOnX1Y1_Visualisation() {
         Game game = new Game();
-        game.placeBoat(new Position(1, 1));
+        game.placeBoat(new Position(1, 1), Orientation.HORIZONTAL);
         assertEquals(game.render(), """
                             
                             🌊🌊🌊🌊🌊
@@ -53,7 +53,7 @@ public class BattleshipTest {
     @Test
     public void game_placingOneShipHorizontallyOnX0Y1_Visualisation() {
         Game game = new Game();
-        game.placeBoat(new Position(0, 1));
+        game.placeBoat(new Position(0, 1), Orientation.HORIZONTAL);
 
         System.out.println(game.getBoats());
         assertEquals(game.getNumberOfBoats(), 1);
@@ -70,9 +70,8 @@ public class BattleshipTest {
     @Test
     public void game_placingOneShipHorizontallyOnX2Y4_Visualisation() {
         Game game = new Game();
-        game.placeBoat(new Position(2, 4));
+        game.placeBoat(new Position(2, 4), Orientation.HORIZONTAL);
 
-        System.out.println(game.getBoats());
         assertEquals(game.getNumberOfBoats(), 1);
         assertEquals(game.render(), """
                             
@@ -81,6 +80,21 @@ public class BattleshipTest {
                             🌊🌊🌊🌊🌊
                             🌊🌊🌊🌊🌊
                             🌊🌊🚢🚢🚢
+                            """);
+    }
+
+    @Test
+    public void game_placingOneShipVerticallyOnX1Y1_Visualisation() {
+        Game game = new Game();
+        game.placeBoat(new Position(1, 1), Orientation.VERTICAL);
+        assertEquals(game.getNumberOfBoats(), 1);
+        assertEquals(game.render(), """
+                            
+                            🌊🌊🌊🌊🌊
+                            🌊🚢🌊🌊🌊
+                            🌊🚢🌊🌊🌊
+                            🌊🚢🌊🌊🌊
+                            🌊🌊🌊🌊🌊
                             """);
     }
 }
