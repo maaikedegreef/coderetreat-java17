@@ -67,4 +67,20 @@ public class BattleshipTest {
                             """);
     }
 
+    @Test
+    public void game_placingOneShipHorizontallyOnX2Y4_Visualisation() {
+        Game game = new Game();
+        game.placeBoat(new Position(2, 4));
+
+        System.out.println(game.getBoats());
+        assertEquals(game.getNumberOfBoats(), 1);
+        assertEquals(game.render(), """
+                            
+                            🌊🌊🌊🌊🌊
+                            🌊🌊🌊🌊🌊
+                            🌊🌊🌊🌊🌊
+                            🌊🌊🌊🌊🌊
+                            🌊🌊🚢🚢🚢
+                            """);
+    }
 }
