@@ -12,20 +12,20 @@ public class Game {
         return boats.size();
     }
 
-    public void placeBoat(Position position, Orientation orientation) {
-        validateRequest(position, orientation);
-        Boat boat = new Boat(position.getX(), position.getY(), orientation);
+    public void placeBoat(Position position, Orientation orientation, BoatType type) {
+        validateRequest(position, orientation, type);
+        Boat boat = new Boat(position.getX(), position.getY(), orientation, type);
         boats.add(boat);
     }
 
-    private void validateRequest(Position position, Orientation orientation) {
+    private void validateRequest(Position position, Orientation orientation, BoatType type) {
         int x = position.getX();
         int y = position.getY();
         //Check if they fit the grid
-        if(orientation == Orientation.HORIZONTAL && (x < 0 || x + 2 > 4 || y < 0 || y > 4))
-            throw new IllegalArgumentException("This " + new Boat(position.getX(), position.getY(), orientation) + " doesn't fit the grid");
-        if(orientation == Orientation.VERTICAL && (x < 0 || x > 4 || y < 0 || y + 2 > 4))
-            throw new IllegalArgumentException("This " + new Boat(position.getX(), position.getY(), orientation) + " doesn't fit the grid");
+        if(orientation == Orientation.HORIZONTAL && (x < 0 || x+ type.getSize()-1 > 4 || y < 0 || y > 4))
+            throw new IllegalArgumentException("This " + new Boat(position.getX(), position.getY(), orientation, type) + " doesn't fit the grid");
+        if(orientation == Orientation.VERTICAL && (x < 0 || x > 4 || y < 0 || y + type.getSize()-1 > 4))
+            throw new IllegalArgumentException("This " + new Boat(position.getX(), position.getY(), orientation, type) + " doesn't fit the grid");
     }
 
     public ArrayList<Boat> getBoats() {
