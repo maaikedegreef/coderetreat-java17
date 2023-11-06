@@ -13,8 +13,19 @@ public class Game {
     }
 
     public void placeBoat(Position position, Orientation orientation) {
+        validateRequest(position, orientation);
         Boat boat = new Boat(position.getX(), position.getY(), orientation);
         boats.add(boat);
+    }
+
+    private void validateRequest(Position position, Orientation orientation) {
+        int x = position.getX();
+        int y = position.getY();
+        //Check if they fit the grid
+        if(orientation == Orientation.HORIZONTAL && (x < 0 || x + 2 > 4 || y < 0 || y > 4))
+            throw new IllegalArgumentException("This " + new Boat(position.getX(), position.getY(), orientation) + " doesn't fit the grid");
+        if(orientation == Orientation.VERTICAL && (x < 0 || x > 4 || y < 0 || y + 2 > 4))
+            throw new IllegalArgumentException("This " + new Boat(position.getX(), position.getY(), orientation) + " doesn't fit the grid");
     }
 
     public ArrayList<Boat> getBoats() {

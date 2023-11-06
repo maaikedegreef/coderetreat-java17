@@ -4,8 +4,8 @@ package be.swsb.coderetreat;
 
 import org.junit.jupiter.api.Test;
 
-import static org.assertj.core.api.Assertions.assertThat;
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertThrows;
 
 public class BattleshipTest {
 
@@ -96,5 +96,37 @@ public class BattleshipTest {
                             🌊🚢🌊🌊🌊
                             🌊🌊🌊🌊🌊
                             """);
+    }
+
+    @Test
+    public void game_placingOneShipHorizontallyOnX4Y4_ThrowsError() {
+        Game game = new Game();
+        assertThrows(IllegalArgumentException.class, () -> {
+            game.placeBoat(new Position(4, 4), Orientation.HORIZONTAL);
+        });
+    }
+
+    @Test
+    public void game_placingOneShipHorizontallyOnX3Y2_ThrowsError() {
+        Game game = new Game();
+        assertThrows(IllegalArgumentException.class, () -> {
+            game.placeBoat(new Position(3, 2), Orientation.HORIZONTAL);
+        });
+    }
+
+    @Test
+    public void game_placingOneShipVerticallyOnX4Y4_ThrowsError() {
+        Game game = new Game();
+        assertThrows(IllegalArgumentException.class, () -> {
+            game.placeBoat(new Position(4, 4), Orientation.VERTICAL);
+        });
+    }
+
+    @Test
+    public void game_placingOneShipVerticallyOnXmin3Y4_ThrowsError() {
+        Game game = new Game();
+        assertThrows(IllegalArgumentException.class, () -> {
+            game.placeBoat(new Position(-3, 4), Orientation.VERTICAL);
+        });
     }
 }
