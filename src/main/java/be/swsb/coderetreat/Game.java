@@ -17,11 +17,15 @@ public class Game {
         boats.add(boat);
     }
 
+    public ArrayList<Boat> getBoats() {
+        return boats;
+    }
+
     public String render() {
         String grid = "\n";
 
-        for (int x = 0; x < SIZE ; x++) {
-            for (int y = 0; y < SIZE ; y++) {
+        for (int y = 0; y < SIZE ; y++) {
+            for (int x = 0; x < SIZE ; x++) {
                 grid += (isBoatOnPosition(x,y) ? Cell.BOAT.getEmoji() : Cell.WAVE.getEmoji());
             }
             grid += "\n";
