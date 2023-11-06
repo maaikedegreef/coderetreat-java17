@@ -13,12 +13,13 @@ public class Game {
     }
 
     public void placeBoat(Position position, Orientation orientation, BoatType type) {
-        validateRequest(position, orientation, type);
+        validateArguments(position, orientation, type);
         Boat boat = new Boat(position.getX(), position.getY(), orientation, type);
+        checkBoatPosition(boat);
         boats.add(boat);
     }
 
-    private void validateRequest(Position position, Orientation orientation, BoatType type) {
+    private void validateArguments(Position position, Orientation orientation, BoatType type) {
         int x = position.getX();
         int y = position.getY();
         //Check if they fit the grid
@@ -26,6 +27,12 @@ public class Game {
             throw new IllegalArgumentException("This " + new Boat(position.getX(), position.getY(), orientation, type) + " doesn't fit the grid");
         if(orientation == Orientation.VERTICAL && (x < 0 || x > 4 || y < 0 || y + type.getSize()-1 > 4))
             throw new IllegalArgumentException("This " + new Boat(position.getX(), position.getY(), orientation, type) + " doesn't fit the grid");
+    }
+
+    private void checkBoatPosition(Boat boat){
+        for (Position position: boat.getPositions()) {
+            if (isBoatOnPosition(position.getX(), position.getY())) throw new IllegalStateException("The position " + position + " for the " + boat + " is not clear.");
+        }
     }
 
     public ArrayList<Boat> getBoats() {

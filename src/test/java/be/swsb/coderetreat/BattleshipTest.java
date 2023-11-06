@@ -186,4 +186,14 @@ public class BattleshipTest {
                             🌊🌊🌊🌊🌊
                             """);
     }
+
+    @Test
+    public void game_placingTwoCarriersOnSamePosition_ThrowsError() {
+        Game game = new Game();
+        game.placeBoat(new Position(0, 0), Orientation.HORIZONTAL, BoatType.CARRIER);
+        assertThrows(IllegalStateException.class, () -> {
+            game.placeBoat(new Position(0,0), Orientation.HORIZONTAL, BoatType.CARRIER);
+        });
+    }
+
 }
