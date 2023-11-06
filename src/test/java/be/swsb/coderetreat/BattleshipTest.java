@@ -196,4 +196,12 @@ public class BattleshipTest {
         });
     }
 
+    @Test
+    public void game_placingTwoShipsOverlappingEachOther_ThrowsError() {
+        Game game = new Game();
+        game.placeBoat(new Position(2, 0), Orientation.VERTICAL, BoatType.BATTLESHIP);
+        assertThrows(IllegalStateException.class, () -> {
+            game.placeBoat(new Position(1,3), Orientation.HORIZONTAL, BoatType.DESTROYER);
+        });
+    }
 }
