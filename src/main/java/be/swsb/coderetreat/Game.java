@@ -12,8 +12,8 @@ public class Game {
         return boats.size();
     }
 
-    public void placeBoat(Position pos) {
-        Boat boat = new Boat(pos);
+    public void placeBoat(Position position) {
+        Boat boat = new Boat(position.getX(), position.getY());
         boats.add(boat);
     }
 
@@ -26,14 +26,13 @@ public class Game {
             }
             grid += "\n";
         }
-
         return grid;
     }
 
     private boolean isBoatOnPosition(int x, int y) {
         Position position = new Position(x,y);
         for ( Boat boat : boats) {
-            if ( boat.getPosition().equals(position)) return true; break;
+            if ( boat.isOnPosition(position)) return true; break;
         }
         return false;
     }

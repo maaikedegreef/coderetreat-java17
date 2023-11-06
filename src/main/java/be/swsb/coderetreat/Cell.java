@@ -2,7 +2,7 @@ package be.swsb.coderetreat;
 
 public enum Cell {
     WAVE(0,"🌊"),
-    BOAT(1,"🛥");
+    BOAT(1,"🚢");
 
     private final int value;
     private final String emoji;
