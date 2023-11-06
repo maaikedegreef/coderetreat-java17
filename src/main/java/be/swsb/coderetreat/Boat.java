@@ -5,4 +5,9 @@ public class Boat {
     public Boat(Position pos) {
         this.position = pos;
     }
+
+    public Position getPosition() {
+        return position;
+    }
+
 }
