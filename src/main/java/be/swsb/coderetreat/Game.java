@@ -3,12 +3,18 @@ package be.swsb.coderetreat;
 import java.util.ArrayList;
 
 public class Game {
-    public static final int SIZE = 5;
+    public static final int DEFAULT_SIZE = 10;
+    private int size;
     private ArrayList<Boat> boats = new ArrayList<Boat>();
     private ArrayList<Position> misses = new ArrayList<Position>();
     private ArrayList<Position> hits = new ArrayList<Position>();
 
     public Game() {
+        this.size = DEFAULT_SIZE;
+    }
+
+    public Game(int gridSize) {
+        this.size = gridSize;
     }
 
     public int getNumberOfBoats() {
@@ -46,8 +52,8 @@ public class Game {
     public String render() {
         StringBuilder grid = new StringBuilder("\n");
 
-        for (int y = 0; y < SIZE; y++) {
-            for (int x = 0; x < SIZE; x++) {
+        for (int y = 0; y < size; y++) {
+            for (int x = 0; x < size; x++) {
                 grid.append(getEmojiForCellOnPosition(new Position(x, y)));
             }
             grid.append("\n");
