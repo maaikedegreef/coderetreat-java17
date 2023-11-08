@@ -49,18 +49,23 @@ public class GameTest {
 
     @Test
     public void game_fireAndHit_Visualisation() {
+    public void game_fireAndMissMultipleTimes_Visualisation() {
         Game game = new Game();
         game.placeBoat(new Position(1, 1), Orientation.HORIZONTAL, BoatType.DESTROYER);
 
         game.fire(new Position(0, 0));
+        game.fire(new Position(0, 1));
+        game.fire(new Position(0, 2));
+        game.fire(new Position(2, 3));
+        game.fire(new Position(3, 3));
 
         assertEquals(game.getNumberOfBoats(), 1);
         assertEquals(game.render(), """
                                             
                 🐠🌊🌊🌊🌊
-                🌊🚢🚢🚢🌊
-                🌊🌊🌊🌊🌊
-                🌊🌊🌊🌊🌊
+                🐠🚢🚢🚢🌊
+                🐠🌊🌊🌊🌊
+                🌊🌊🐠🐠🌊
                 🌊🌊🌊🌊🌊
                 """);
 

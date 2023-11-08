@@ -55,9 +55,9 @@ public class Game {
     }
 
     private String getEmojiForCellOnPosition(Position position) {
-        if (isBoatOnPosition(position)) return Cell.BOAT.getEmoji();
-        else if (isMissedOnPosition(position)) return Cell.MISS.getEmoji();
-        else return Cell.WAVE.getEmoji();
+        return isBoatOnPosition(position) ? Cell.BOAT.getEmoji() :
+                isMissedOnPosition(position) ? Cell.MISS.getEmoji() :
+                        Cell.WAVE.getEmoji();
     }
 
     private boolean isBoatOnPosition(Position position) {
@@ -70,13 +70,14 @@ public class Game {
 
     private boolean isMissedOnPosition(Position position) {
         for (Position missed : misses) {
-            if (missed.equals(position)) return true;
-            break;
+            if (missed.equals(position)) {
+                return true;
+            }
         }
         return false;
     }
 
     public void fire(Position position) {
-        if(!isBoatOnPosition(position)) misses.add(position);
+        if (!isBoatOnPosition(position)) misses.add(position);
     }
 }
