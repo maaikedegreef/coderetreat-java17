@@ -3,12 +3,10 @@ package be.swsb.coderetreat;
 import java.util.ArrayList;
 
 public class Boat {
-    private BoatType type;
     private Orientation orientation;
     private ArrayList<Position> positions = new ArrayList<Position>();
 
     public Boat(int x, int y, Orientation orientation, BoatType type) {
-        this.type = type;
         this.orientation = orientation;
         for (int i = 0; i < type.getSize(); i++) { //hardcoded 3
             if (orientation == Orientation.HORIZONTAL) positions.add(new Position(x + i, y));
