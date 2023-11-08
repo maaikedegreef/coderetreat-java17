@@ -18,7 +18,7 @@ public class Game {
     public void placeBoat(Position position, Orientation orientation, BoatType type) {
         validateArgumentsOfPlacingBoat(position, orientation, type);
         Boat boat = new Boat(position.getX(), position.getY(), orientation, type);
-        checkBoatPosition(boat);
+        validatePositionOfPlacingBoat(boat);
         boats.add(boat);
     }
 
@@ -32,10 +32,10 @@ public class Game {
             throw new IllegalArgumentException("This " + new Boat(position.getX(), position.getY(), orientation, type) + " doesn't fit the grid");
     }
 
-    private void checkBoatPosition(Boat boat) {
+    private void validatePositionOfPlacingBoat(Boat boat) {
         for (Position position : boat.getPositions()) {
             if (isBoatOnPosition(position))
-                throw new IllegalStateException("The position " + position + " for the " + boat + " is not clear.");
+                throw new IllegalStateException("The position " + position + " for the " + boat + " is not clear, you can't place this boat here.");
         }
     }
 
@@ -63,11 +63,14 @@ public class Game {
     }
 
     private boolean isBoatOnPosition(Position position) {
+        return getBoatOnPosition(position) != null;
+    }
+    private Boat getBoatOnPosition(Position position) {
         for (Boat boat : boats) {
-            if (boat.isOnPosition(position)) return true;
+            if (boat.isOnPosition(position)) return boat;
             break;
         }
-        return false;
+        return null;
     }
 
     private boolean isMissedOnPosition(Position position) {
@@ -89,6 +92,17 @@ public class Game {
     }
 
     public void fire(Position position) {
-        if (isBoatOnPosition(position)) hits.add(position); else misses.add(position);
+        if (!isBoatOnPosition(position)) {
+            misses.add(position);
+        } else {
+            hits.add(position);
+            getBoatOnPosition(position).getHitOnPosition(position);
+        }
+        checkForSunkenBoats();
     }
+
+    private void checkForSunkenBoats() {
+        boats.removeIf(boat -> boat.getPositions().isEmpty());
+    }
+
 }
