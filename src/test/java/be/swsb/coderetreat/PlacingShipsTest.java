@@ -1,7 +1,6 @@
 package be.swsb.coderetreat;
 
 
-
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
@@ -20,13 +19,13 @@ public class PlacingShipsTest {
         Game game = new Game();
         game.placeBoat(new Position(1, 1), Orientation.HORIZONTAL, BoatType.DESTROYER);
         assertEquals(game.render(), """
-                            
-                            🌊🌊🌊🌊🌊
-                            🌊🚢🚢🚢🌊
-                            🌊🌊🌊🌊🌊
-                            🌊🌊🌊🌊🌊
-                            🌊🌊🌊🌊🌊
-                            """);
+                                            
+                🌊🌊🌊🌊🌊
+                🌊🚢🚢🚢🌊
+                🌊🌊🌊🌊🌊
+                🌊🌊🌊🌊🌊
+                🌊🌊🌊🌊🌊
+                """);
     }
 
     @Test
@@ -35,13 +34,13 @@ public class PlacingShipsTest {
         game.placeBoat(new Position(0, 1), Orientation.HORIZONTAL, BoatType.DESTROYER);
         assertEquals(game.getNumberOfBoats(), 1);
         assertEquals(game.render(), """
-                            
-                            🌊🌊🌊🌊🌊
-                            🚢🚢🚢🌊🌊
-                            🌊🌊🌊🌊🌊
-                            🌊🌊🌊🌊🌊
-                            🌊🌊🌊🌊🌊
-                            """);
+                                            
+                🌊🌊🌊🌊🌊
+                🚢🚢🚢🌊🌊
+                🌊🌊🌊🌊🌊
+                🌊🌊🌊🌊🌊
+                🌊🌊🌊🌊🌊
+                """);
     }
 
     @Test
@@ -50,13 +49,13 @@ public class PlacingShipsTest {
         game.placeBoat(new Position(2, 4), Orientation.HORIZONTAL, BoatType.DESTROYER);
         assertEquals(game.getNumberOfBoats(), 1);
         assertEquals(game.render(), """
-                            
-                            🌊🌊🌊🌊🌊
-                            🌊🌊🌊🌊🌊
-                            🌊🌊🌊🌊🌊
-                            🌊🌊🌊🌊🌊
-                            🌊🌊🚢🚢🚢
-                            """);
+                                            
+                🌊🌊🌊🌊🌊
+                🌊🌊🌊🌊🌊
+                🌊🌊🌊🌊🌊
+                🌊🌊🌊🌊🌊
+                🌊🌊🚢🚢🚢
+                """);
     }
 
     @Test
@@ -65,13 +64,13 @@ public class PlacingShipsTest {
         game.placeBoat(new Position(1, 1), Orientation.VERTICAL, BoatType.DESTROYER);
         assertEquals(game.getNumberOfBoats(), 1);
         assertEquals(game.render(), """
-                            
-                            🌊🌊🌊🌊🌊
-                            🌊🚢🌊🌊🌊
-                            🌊🚢🌊🌊🌊
-                            🌊🚢🌊🌊🌊
-                            🌊🌊🌊🌊🌊
-                            """);
+                                            
+                🌊🌊🌊🌊🌊
+                🌊🚢🌊🌊🌊
+                🌊🚢🌊🌊🌊
+                🌊🚢🌊🌊🌊
+                🌊🌊🌊🌊🌊
+                """);
     }
 
     @Test
@@ -112,13 +111,13 @@ public class PlacingShipsTest {
         game.placeBoat(new Position(0, 0), Orientation.HORIZONTAL, BoatType.CARRIER);
         assertEquals(game.getNumberOfBoats(), 1);
         assertEquals(game.render(), """
-                            
-                            🚢🚢🚢🚢🚢
-                            🌊🌊🌊🌊🌊
-                            🌊🌊🌊🌊🌊
-                            🌊🌊🌊🌊🌊
-                            🌊🌊🌊🌊🌊
-                            """);
+                                            
+                🚢🚢🚢🚢🚢
+                🌊🌊🌊🌊🌊
+                🌊🌊🌊🌊🌊
+                🌊🌊🌊🌊🌊
+                🌊🌊🌊🌊🌊
+                """);
     }
 
     @Test
@@ -127,13 +126,13 @@ public class PlacingShipsTest {
         game.placeBoat(new Position(3, 0), Orientation.VERTICAL, BoatType.BATTLESHIP);
         assertEquals(game.getNumberOfBoats(), 1);
         assertEquals(game.render(), """
-                            
-                            🌊🌊🌊🚢🌊
-                            🌊🌊🌊🚢🌊
-                            🌊🌊🌊🚢🌊
-                            🌊🌊🌊🚢🌊
-                            🌊🌊🌊🌊🌊
-                            """);
+                                            
+                🌊🌊🌊🚢🌊
+                🌊🌊🌊🚢🌊
+                🌊🌊🌊🚢🌊
+                🌊🌊🌊🚢🌊
+                🌊🌊🌊🌊🌊
+                """);
     }
 
     @Test
@@ -142,13 +141,13 @@ public class PlacingShipsTest {
         game.placeBoat(new Position(3, 0), Orientation.VERTICAL, BoatType.SUBMARINE);
         assertEquals(game.getNumberOfBoats(), 1);
         assertEquals(game.render(), """
-                            
-                            🌊🌊🌊🚢🌊
-                            🌊🌊🌊🚢🌊
-                            🌊🌊🌊🌊🌊
-                            🌊🌊🌊🌊🌊
-                            🌊🌊🌊🌊🌊
-                            """);
+                                            
+                🌊🌊🌊🚢🌊
+                🌊🌊🌊🚢🌊
+                🌊🌊🌊🌊🌊
+                🌊🌊🌊🌊🌊
+                🌊🌊🌊🌊🌊
+                """);
     }
 
     @Test
@@ -157,13 +156,13 @@ public class PlacingShipsTest {
         game.placeBoat(new Position(0, 0), Orientation.HORIZONTAL, BoatType.PATROLBOAT);
         assertEquals(game.getNumberOfBoats(), 1);
         assertEquals(game.render(), """
-                            
-                            🚢🌊🌊🌊🌊
-                            🌊🌊🌊🌊🌊
-                            🌊🌊🌊🌊🌊
-                            🌊🌊🌊🌊🌊
-                            🌊🌊🌊🌊🌊
-                            """);
+                                            
+                🚢🌊🌊🌊🌊
+                🌊🌊🌊🌊🌊
+                🌊🌊🌊🌊🌊
+                🌊🌊🌊🌊🌊
+                🌊🌊🌊🌊🌊
+                """);
     }
 
     @Test
@@ -171,7 +170,7 @@ public class PlacingShipsTest {
         Game game = new Game();
         game.placeBoat(new Position(0, 0), Orientation.HORIZONTAL, BoatType.CARRIER);
         assertThrows(IllegalStateException.class, () -> {
-            game.placeBoat(new Position(0,0), Orientation.HORIZONTAL, BoatType.CARRIER);
+            game.placeBoat(new Position(0, 0), Orientation.HORIZONTAL, BoatType.CARRIER);
         });
     }
 
@@ -180,7 +179,7 @@ public class PlacingShipsTest {
         Game game = new Game();
         game.placeBoat(new Position(2, 0), Orientation.VERTICAL, BoatType.BATTLESHIP);
         assertThrows(IllegalStateException.class, () -> {
-            game.placeBoat(new Position(1,3), Orientation.HORIZONTAL, BoatType.DESTROYER);
+            game.placeBoat(new Position(1, 3), Orientation.HORIZONTAL, BoatType.DESTROYER);
         });
     }
 }

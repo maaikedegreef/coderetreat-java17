@@ -6,6 +6,7 @@ public class Game {
     public static final int SIZE = 5;
     private ArrayList<Boat> boats = new ArrayList<Boat>();
     private ArrayList<Position> misses = new ArrayList<Position>();
+
     public Game() {
     }
 
@@ -24,15 +25,16 @@ public class Game {
         int x = position.getX();
         int y = position.getY();
         //Check if they fit the grid
-        if(orientation == Orientation.HORIZONTAL && (x < 0 || x+ type.getSize()-1 > 4 || y < 0 || y > 4))
+        if (orientation == Orientation.HORIZONTAL && (x < 0 || x + type.getSize() - 1 > 4 || y < 0 || y > 4))
             throw new IllegalArgumentException("This " + new Boat(position.getX(), position.getY(), orientation, type) + " doesn't fit the grid");
-        if(orientation == Orientation.VERTICAL && (x < 0 || x > 4 || y < 0 || y + type.getSize()-1 > 4))
+        if (orientation == Orientation.VERTICAL && (x < 0 || x > 4 || y < 0 || y + type.getSize() - 1 > 4))
             throw new IllegalArgumentException("This " + new Boat(position.getX(), position.getY(), orientation, type) + " doesn't fit the grid");
     }
 
-    private void checkBoatPosition(Boat boat){
-        for (Position position: boat.getPositions()) {
-            if (isBoatOnPosition(position)) throw new IllegalStateException("The position " + position + " for the " + boat + " is not clear.");
+    private void checkBoatPosition(Boat boat) {
+        for (Position position : boat.getPositions()) {
+            if (isBoatOnPosition(position))
+                throw new IllegalStateException("The position " + position + " for the " + boat + " is not clear.");
         }
     }
 
@@ -43,8 +45,8 @@ public class Game {
     public String render() {
         StringBuilder grid = new StringBuilder("\n");
 
-        for (int y = 0; y < SIZE ; y++) {
-            for (int x = 0; x < SIZE ; x++) {
+        for (int y = 0; y < SIZE; y++) {
+            for (int x = 0; x < SIZE; x++) {
                 grid.append(getEmojiForCellOnPosition(new Position(x, y)));
             }
             grid.append("\n");
@@ -52,22 +54,24 @@ public class Game {
         return grid.toString();
     }
 
-    private String getEmojiForCellOnPosition(Position position){
-        if(isBoatOnPosition(position)) return Cell.BOAT.getEmoji();
-        else if(isMissedOnPosition(position)) return Cell.MISS.getEmoji();
+    private String getEmojiForCellOnPosition(Position position) {
+        if (isBoatOnPosition(position)) return Cell.BOAT.getEmoji();
+        else if (isMissedOnPosition(position)) return Cell.MISS.getEmoji();
         else return Cell.WAVE.getEmoji();
     }
 
     private boolean isBoatOnPosition(Position position) {
-        for ( Boat boat : boats) {
-            if ( boat.isOnPosition(position)) return true; break;
+        for (Boat boat : boats) {
+            if (boat.isOnPosition(position)) return true;
+            break;
         }
         return false;
     }
 
     private boolean isMissedOnPosition(Position position) {
-        for ( Position missed : misses) {
-            if ( missed.equals(position)) return true; break;
+        for (Position missed : misses) {
+            if (missed.equals(position)) return true;
+            break;
         }
         return false;
     }

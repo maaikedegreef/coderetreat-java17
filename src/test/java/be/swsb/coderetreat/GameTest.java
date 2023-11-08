@@ -1,7 +1,6 @@
 package be.swsb.coderetreat;
 
 
-
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
@@ -19,13 +18,13 @@ public class GameTest {
     public void game_renderNewGame_Visualisation() {
         Game game = new Game();
         assertEquals(game.render(), """
-                            
-                            🌊🌊🌊🌊🌊
-                            🌊🌊🌊🌊🌊
-                            🌊🌊🌊🌊🌊
-                            🌊🌊🌊🌊🌊
-                            🌊🌊🌊🌊🌊
-                            """);
+                                            
+                🌊🌊🌊🌊🌊
+                🌊🌊🌊🌊🌊
+                🌊🌊🌊🌊🌊
+                🌊🌊🌊🌊🌊
+                🌊🌊🌊🌊🌊
+                """);
 
     }
 
@@ -34,17 +33,36 @@ public class GameTest {
         Game game = new Game();
         game.placeBoat(new Position(1, 1), Orientation.HORIZONTAL, BoatType.DESTROYER);
 
-        game.fire(new Position(0,0));
+        game.fire(new Position(0, 0));
 
         assertEquals(game.getNumberOfBoats(), 1);
         assertEquals(game.render(), """
-                            
-                            🐠🌊🌊🌊🌊
-                            🌊🚢🚢🚢🌊
-                            🌊🌊🌊🌊🌊
-                            🌊🌊🌊🌊🌊
-                            🌊🌊🌊🌊🌊
-                            """);
+                                            
+                🐠🌊🌊🌊🌊
+                🌊🚢🚢🚢🌊
+                🌊🌊🌊🌊🌊
+                🌊🌊🌊🌊🌊
+                🌊🌊🌊🌊🌊
+                """);
+
+    }
+
+    @Test
+    public void game_fireAndHit_Visualisation() {
+        Game game = new Game();
+        game.placeBoat(new Position(1, 1), Orientation.HORIZONTAL, BoatType.DESTROYER);
+
+        game.fire(new Position(0, 0));
+
+        assertEquals(game.getNumberOfBoats(), 1);
+        assertEquals(game.render(), """
+                                            
+                🐠🌊🌊🌊🌊
+                🌊🚢🚢🚢🌊
+                🌊🌊🌊🌊🌊
+                🌊🌊🌊🌊🌊
+                🌊🌊🌊🌊🌊
+                """);
 
     }
 }
