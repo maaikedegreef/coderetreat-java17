@@ -3,7 +3,8 @@ package be.swsb.coderetreat;
 public enum Cell {
     WAVE("🌊"),
     BOAT("🚢"),
-    MISS("🐠");
+    MISS("🐠"),
+    HIT("🔥");
 
     private final String emoji;
 

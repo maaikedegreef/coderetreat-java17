@@ -13,6 +13,9 @@ public class Boat {
             if (orientation == Orientation.VERTICAL) positions.add(new Position(x, y + i));
         }
     }
+    public void getHitOnPosition(Position position) {
+        positions.remove(position);
+    }
 
     public ArrayList<Position> getPositions() {
         return positions;

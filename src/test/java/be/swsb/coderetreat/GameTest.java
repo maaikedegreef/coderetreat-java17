@@ -48,7 +48,6 @@ public class GameTest {
     }
 
     @Test
-    public void game_fireAndHit_Visualisation() {
     public void game_fireAndMissMultipleTimes_Visualisation() {
         Game game = new Game();
         game.placeBoat(new Position(1, 1), Orientation.HORIZONTAL, BoatType.DESTROYER);
@@ -66,6 +65,46 @@ public class GameTest {
                 🐠🚢🚢🚢🌊
                 🐠🌊🌊🌊🌊
                 🌊🌊🐠🐠🌊
+                🌊🌊🌊🌊🌊
+                """);
+
+    }
+
+    @Test
+    public void game_fireAndHitOneCellOfDestroyerOnX1Y1_Visualisation() {
+        Game game = new Game();
+        game.placeBoat(new Position(1, 1), Orientation.HORIZONTAL, BoatType.DESTROYER);
+
+        game.fire(new Position(0, 0));
+        game.fire(new Position(2, 1));
+
+        assertEquals(game.getNumberOfBoats(), 1);
+        assertEquals(game.render(), """
+
+                🐠🌊🌊🌊🌊
+                🌊🚢🔥🚢🌊
+                🌊🌊🌊🌊🌊
+                🌊🌊🌊🌊🌊
+                🌊🌊🌊🌊🌊
+                """);
+
+    }
+    @Test
+    public void game_fireAndHitTwoCellsOfDestroyerOnX1Y1_Visualisation() {
+        Game game = new Game();
+        game.placeBoat(new Position(1, 1), Orientation.HORIZONTAL, BoatType.DESTROYER);
+
+        game.fire(new Position(0, 0));
+        game.fire(new Position(2, 1));
+        game.fire(new Position(3, 1));
+
+        assertEquals(game.getNumberOfBoats(), 1);
+        assertEquals(game.render(), """
+
+                🐠🌊🌊🌊🌊
+                🌊🚢🔥🔥🌊
+                🌊🌊🌊🌊🌊
+                🌊🌊🌊🌊🌊
                 🌊🌊🌊🌊🌊
                 """);
 

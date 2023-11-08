@@ -6,6 +6,7 @@ public class Game {
     public static final int SIZE = 5;
     private ArrayList<Boat> boats = new ArrayList<Boat>();
     private ArrayList<Position> misses = new ArrayList<Position>();
+    private ArrayList<Position> hits = new ArrayList<Position>();
 
     public Game() {
     }
@@ -55,9 +56,10 @@ public class Game {
     }
 
     private String getEmojiForCellOnPosition(Position position) {
-        return isBoatOnPosition(position) ? Cell.BOAT.getEmoji() :
-                isMissedOnPosition(position) ? Cell.MISS.getEmoji() :
-                        Cell.WAVE.getEmoji();
+        return isMissedOnPosition(position) ? Cell.MISS.getEmoji() :
+                isHittedOnPosition(position) ? Cell.HIT.getEmoji() :
+                        isBoatOnPosition(position) ? Cell.BOAT.getEmoji() :
+                                Cell.WAVE.getEmoji();
     }
 
     private boolean isBoatOnPosition(Position position) {
@@ -77,7 +79,16 @@ public class Game {
         return false;
     }
 
+    private boolean isHittedOnPosition(Position position) {
+        for (Position hitted : hits) {
+            if (hitted.equals(position)) {
+                return true;
+            }
+        }
+        return false;
+    }
+
     public void fire(Position position) {
-        if (!isBoatOnPosition(position)) misses.add(position);
+        if (isBoatOnPosition(position)) hits.add(position); else misses.add(position);
     }
 }
