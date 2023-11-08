@@ -28,4 +28,23 @@ public class GameTest {
                             """);
 
     }
+
+    @Test
+    public void game_fireAndMiss_Visualisation() {
+        Game game = new Game();
+        game.placeBoat(new Position(1, 1), Orientation.HORIZONTAL, BoatType.DESTROYER);
+
+        game.fire(new Position(0,0));
+
+        assertEquals(game.getNumberOfBoats(), 1);
+        assertEquals(game.render(), """
+                            
+                            🐠🌊🌊🌊🌊
+                            🌊🚢🚢🚢🌊
+                            🌊🌊🌊🌊🌊
+                            🌊🌊🌊🌊🌊
+                            🌊🌊🌊🌊🌊
+                            """);
+
+    }
 }
