@@ -32,9 +32,9 @@ public class Game {
         int x = position.getX();
         int y = position.getY();
         //Check if they fit the grid
-        if (orientation == Orientation.HORIZONTAL && (x < 0 || x + type.getSize() - 1 > 4 || y < 0 || y > 4))
+        if (orientation == Orientation.HORIZONTAL && (x < 0 || x + type.getSize() - 1 > size - 1 || y < 0 || y > size - 1))
             throw new IllegalArgumentException("This " + new Boat(position.getX(), position.getY(), orientation, type) + " doesn't fit the grid");
-        if (orientation == Orientation.VERTICAL && (x < 0 || x > 4 || y < 0 || y + type.getSize() - 1 > 4))
+        if (orientation == Orientation.VERTICAL && (x < 0 || x > size - 1 || y < 0 || y + type.getSize() - 1 > size - 1))
             throw new IllegalArgumentException("This " + new Boat(position.getX(), position.getY(), orientation, type) + " doesn't fit the grid");
     }
 

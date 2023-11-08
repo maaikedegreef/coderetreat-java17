@@ -8,7 +8,7 @@ public class Boat {
 
     public Boat(int x, int y, Orientation orientation, BoatType type) {
         this.orientation = orientation;
-        for (int i = 0; i < type.getSize(); i++) { //hardcoded 3
+        for (int i = 0; i < type.getSize(); i++) {
             if (orientation == Orientation.HORIZONTAL) positions.add(new Position(x + i, y));
             if (orientation == Orientation.VERTICAL) positions.add(new Position(x, y + i));
         }
