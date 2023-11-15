@@ -2,18 +2,18 @@ package be.swsb.coderetreat;
 
 import java.util.ArrayList;
 
-public class Game {
+public class GameBoard {
     public static final int DEFAULT_SIZE = 10;
     private int size;
     private ArrayList<Boat> boats = new ArrayList<Boat>();
     private ArrayList<Position> misses = new ArrayList<Position>();
     private ArrayList<Position> hits = new ArrayList<Position>();
 
-    public Game() {
+    public GameBoard() {
         this.size = DEFAULT_SIZE;
     }
 
-    public Game(int gridSize) {
+    public GameBoard(int gridSize) {
         this.size = gridSize;
     }
 
