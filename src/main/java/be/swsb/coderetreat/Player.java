@@ -28,5 +28,10 @@ public class Player {
 
     public int getNumberOfBoats() {return gameBoard.getNumberOfBoats();}
 
-    public boolean isFinished() {return gameBoard.isFinished();}
+    public Status getStatus() {
+        if (gameBoard.isFinished()) return Status.NOWINNERS;
+        if (getNumberOfBoats() == 0) return Status.LOST;
+        if (opponent.getNumberOfBoats() == 0) return Status.WON;
+        else return Status.INPROGRESS;
+    }
 }

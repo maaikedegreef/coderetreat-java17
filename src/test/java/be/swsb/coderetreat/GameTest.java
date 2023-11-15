@@ -3,7 +3,6 @@ package be.swsb.coderetreat;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertFalse;
 
 public class GameTest {
 
@@ -44,7 +43,7 @@ public class GameTest {
         assertEquals(player1.getNumberOfBoats(), 5);
         assertEquals(player2.getNumberOfBoats(), 4);
 
-        assertFalse(player1.isFinished());
+        assertEquals(player1.getStatus(), Status.INPROGRESS);
 
         assertEquals(player1.getGameBoard().render(), """
 
@@ -74,6 +73,82 @@ public class GameTest {
                 🌊🌊🌊🌊🌊🌊🌊🌊🌊🌊
                 """);
 
+    }
+
+    @Test
+    public void game_twoPlayers_alternatingMovesUntilGameEnds() {
+        Player player1 = new Player();
+        Player player2 = new Player();
+
+        player1.setOpponent(player2);
+        player2.setOpponent(player1);
+
+        player1.placeBoats(boats2);
+        player2.placeBoats(boats1);
+
+        player1.fire(0, 0);
+        player2.fire(0, 0);
+        player1.fire(5, 1);
+        player2.fire(1, 0);
+        player1.fire(6, 1);
+        player2.fire(2, 0);
+        player1.fire(0, 9);
+        player2.fire(3, 0);
+        player1.fire(1, 9);
+        player2.fire(4, 0);
+        player1.fire(2, 9);
+        player2.fire(5, 0);
+        player1.fire(1, 3);
+        player2.fire(6, 0);
+        player1.fire(2, 3);
+        player2.fire(7, 0);
+        player1.fire(3, 3);
+        player2.fire(8, 0);
+        player1.fire(4, 3);
+        player2.fire(9, 0);
+        player1.fire(5, 7);
+        player2.fire(0, 1);
+        player1.fire(6, 7);
+        player2.fire(1, 1);
+        player1.fire(7, 7);
+        player2.fire(2, 1);
+        player1.fire(8, 7);
+        player2.fire(3, 1);
+        player1.fire(9, 7);
+
+        assertEquals(player1.getNumberOfBoats(), 4);
+        assertEquals(player2.getNumberOfBoats(), 0);
+
+        assertEquals(player1.getStatus(),Status.WON);
+        assertEquals(player2.getStatus(),Status.LOST);
+
+        assertEquals(player1.getGameBoard().render(), """
+
+                🔥🐠🐠🐠🐠🐠🐠🐠🐠🔥
+                🔥🐠🐠🐠🌊🚢🚢🌊🌊🌊
+                🚢🌊🌊🌊🌊🌊🌊🌊🌊🌊
+                🌊🌊🌊🚢🌊🌊🌊🌊🌊🌊
+                🌊🌊🌊🚢🌊🌊🌊🌊🌊🌊
+                🌊🌊🌊🚢🌊🌊🌊🌊🌊🌊
+                🌊🌊🌊🚢🌊🌊🌊🌊🌊🌊
+                🌊🌊🌊🌊🌊🚢🚢🚢🚢🚢
+                🌊🌊🌊🌊🌊🌊🌊🌊🌊🌊
+                🌊🌊🌊🌊🌊🌊🌊🌊🌊🌊
+                """);
+
+        assertEquals(player2.getGameBoard().render(), """
+
+                🔥🌊🌊🌊🌊🌊🌊🌊🌊🌊
+                🌊🌊🌊🌊🌊🔥🔥🌊🌊🌊
+                🌊🌊🌊🌊🌊🌊🌊🌊🌊🌊
+                🌊🔥🔥🔥🔥🌊🌊🌊🌊🌊
+                🌊🌊🌊🌊🌊🌊🌊🌊🌊🌊
+                🌊🌊🌊🌊🌊🌊🌊🌊🌊🌊
+                🌊🌊🌊🌊🌊🌊🌊🌊🌊🌊
+                🌊🌊🌊🌊🌊🔥🔥🔥🔥🔥
+                🌊🌊🌊🌊🌊🌊🌊🌊🌊🌊
+                🔥🔥🔥🌊🌊🌊🌊🌊🌊🌊
+                """);
     }
 
 

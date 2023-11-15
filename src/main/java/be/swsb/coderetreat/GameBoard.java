@@ -115,6 +115,6 @@ public class GameBoard {
     }
 
     public boolean isFinished() {
-        return boats.isEmpty() || misses.size()+hits.size()==size*size;
+        return misses.size()+hits.size()==size*size;
     }
 }
