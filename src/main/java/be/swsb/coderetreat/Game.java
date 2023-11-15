@@ -74,7 +74,6 @@ public class Game {
     private Boat getBoatOnPosition(Position position) {
         for (Boat boat : boats) {
             if (boat.isOnPosition(position)) return boat;
-            break;
         }
         return null;
     }

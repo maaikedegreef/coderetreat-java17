@@ -3,8 +3,7 @@ package be.swsb.coderetreat;
 
 import org.junit.jupiter.api.Test;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertThrows;
+import static org.junit.jupiter.api.Assertions.*;
 
 public class PlacingShipsTest {
     @Test
@@ -181,5 +180,52 @@ public class PlacingShipsTest {
         assertThrows(IllegalStateException.class, () -> {
             game.placeBoat(new Position(1, 3), Orientation.HORIZONTAL, BoatType.DESTROYER);
         });
+    }
+
+    @Test
+    public void placingShip_placingTwoShips_Visualisation() {
+        Game game = new Game();
+        game.placeBoat(new Position(0, 1), Orientation.HORIZONTAL, BoatType.SUBMARINE);
+        game.placeBoat(new Position(0, 0), Orientation.HORIZONTAL, BoatType.PATROLBOAT);
+
+        assertEquals(game.getNumberOfBoats(), 2);
+        assertEquals(game.render(), """
+                                            
+                🚢🌊🌊🌊🌊🌊🌊🌊🌊🌊
+                🚢🚢🌊🌊🌊🌊🌊🌊🌊🌊
+                🌊🌊🌊🌊🌊🌊🌊🌊🌊🌊
+                🌊🌊🌊🌊🌊🌊🌊🌊🌊🌊
+                🌊🌊🌊🌊🌊🌊🌊🌊🌊🌊
+                🌊🌊🌊🌊🌊🌊🌊🌊🌊🌊
+                🌊🌊🌊🌊🌊🌊🌊🌊🌊🌊
+                🌊🌊🌊🌊🌊🌊🌊🌊🌊🌊
+                🌊🌊🌊🌊🌊🌊🌊🌊🌊🌊
+                🌊🌊🌊🌊🌊🌊🌊🌊🌊🌊
+                """);
+    }
+
+
+    @Test
+    public void placingShip_placingAllShips_Visualisation() {
+        Game game = new Game();
+        game.placeBoat(new Position(0, 0), Orientation.HORIZONTAL, BoatType.PATROLBOAT);
+        game.placeBoat(new Position(5, 1), Orientation.HORIZONTAL, BoatType.SUBMARINE);
+        game.placeBoat(new Position(1, 3), Orientation.HORIZONTAL, BoatType.BATTLESHIP);
+        game.placeBoat(new Position(5, 7), Orientation.HORIZONTAL, BoatType.CARRIER);
+        game.placeBoat(new Position(0, 9), Orientation.HORIZONTAL, BoatType.DESTROYER);
+        assertEquals(game.getNumberOfBoats(), 5);
+        assertEquals(game.render(), """
+
+                🚢🌊🌊🌊🌊🌊🌊🌊🌊🌊
+                🌊🌊🌊🌊🌊🚢🚢🌊🌊🌊
+                🌊🌊🌊🌊🌊🌊🌊🌊🌊🌊
+                🌊🚢🚢🚢🚢🌊🌊🌊🌊🌊
+                🌊🌊🌊🌊🌊🌊🌊🌊🌊🌊
+                🌊🌊🌊🌊🌊🌊🌊🌊🌊🌊
+                🌊🌊🌊🌊🌊🌊🌊🌊🌊🌊
+                🌊🌊🌊🌊🌊🚢🚢🚢🚢🚢
+                🌊🌊🌊🌊🌊🌊🌊🌊🌊🌊
+                🚢🚢🚢🌊🌊🌊🌊🌊🌊🌊
+                """);
     }
 }
