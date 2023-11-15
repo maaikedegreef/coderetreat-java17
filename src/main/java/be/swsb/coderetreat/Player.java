@@ -23,6 +23,9 @@ public class Player {
     }
 
     public void fire(int x, int y) {
+        if (getStatus()!=Status.INPROGRESS) {
+            throw new IllegalStateException("The game is over, you can't fire anymore.");
+        }
         opponent.getGameBoard().fire(new Position(x,y));
     }
 
