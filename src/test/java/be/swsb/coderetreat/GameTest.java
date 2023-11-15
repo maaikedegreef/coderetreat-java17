@@ -120,8 +120,8 @@ public class GameTest {
         assertEquals(player1.getNumberOfBoats(), 4);
         assertEquals(player2.getNumberOfBoats(), 0);
 
-        assertEquals(player1.getStatus(),Status.WON);
-        assertEquals(player2.getStatus(),Status.LOST);
+        assertEquals(player1.getStatus(), Status.WON);
+        assertEquals(player2.getStatus(), Status.LOST);
 
         assertEquals(player1.getGameBoard().render(), """
 
@@ -193,10 +193,9 @@ public class GameTest {
         player2.fire(3, 1);
         player1.fire(9, 7);
 
-        assertThrows(IllegalStateException.class, () -> { player2.fire(4, 1); });
+        assertThrows(IllegalStateException.class, () -> player2.fire(4, 1));
 
     }
-
 
 
 }

@@ -75,33 +75,25 @@ public class PlacingBoatTest {
     @Test
     public void placingBoat_placingOneShipHorizontallyOnX4Y4_ThrowsError() {
         GameBoard gameBoard = new GameBoard(5);
-        assertThrows(IllegalArgumentException.class, () -> {
-            gameBoard.placeBoat(new Position(4, 4), Orientation.HORIZONTAL, BoatType.DESTROYER);
-        });
+        assertThrows(IllegalArgumentException.class, () -> gameBoard.placeBoat(new Position(4, 4), Orientation.HORIZONTAL, BoatType.DESTROYER));
     }
 
     @Test
     public void placingBoat_placingOneShipHorizontallyOnX3Y2_ThrowsError() {
         GameBoard gameBoard = new GameBoard(5);
-        assertThrows(IllegalArgumentException.class, () -> {
-            gameBoard.placeBoat(new Position(3, 2), Orientation.HORIZONTAL, BoatType.DESTROYER);
-        });
+        assertThrows(IllegalArgumentException.class, () -> gameBoard.placeBoat(new Position(3, 2), Orientation.HORIZONTAL, BoatType.DESTROYER));
     }
 
     @Test
     public void placingBoat_placingOneShipVerticallyOnX4Y4_ThrowsError() {
         GameBoard gameBoard = new GameBoard(5);
-        assertThrows(IllegalArgumentException.class, () -> {
-            gameBoard.placeBoat(new Position(4, 4), Orientation.VERTICAL, BoatType.DESTROYER);
-        });
+        assertThrows(IllegalArgumentException.class, () -> gameBoard.placeBoat(new Position(4, 4), Orientation.VERTICAL, BoatType.DESTROYER));
     }
 
     @Test
     public void placingBoat_placingOneShipVerticallyOnXmin3Y4_ThrowsError() {
         GameBoard gameBoard = new GameBoard(5);
-        assertThrows(IllegalArgumentException.class, () -> {
-            gameBoard.placeBoat(new Position(-3, 4), Orientation.VERTICAL, BoatType.DESTROYER);
-        });
+        assertThrows(IllegalArgumentException.class, () -> gameBoard.placeBoat(new Position(-3, 4), Orientation.VERTICAL, BoatType.DESTROYER));
     }
 
     @Test
@@ -168,18 +160,14 @@ public class PlacingBoatTest {
     public void placingBoat_placingTwoCarriersOnSamePosition_ThrowsError() {
         GameBoard gameBoard = new GameBoard(5);
         gameBoard.placeBoat(new Position(0, 0), Orientation.HORIZONTAL, BoatType.CARRIER);
-        assertThrows(IllegalStateException.class, () -> {
-            gameBoard.placeBoat(new Position(0, 0), Orientation.HORIZONTAL, BoatType.CARRIER);
-        });
+        assertThrows(IllegalStateException.class, () -> gameBoard.placeBoat(new Position(0, 0), Orientation.HORIZONTAL, BoatType.CARRIER));
     }
 
     @Test
     public void placingBoat_placingTwoShipsOverlappingEachOther_ThrowsError() {
         GameBoard gameBoard = new GameBoard(5);
         gameBoard.placeBoat(new Position(2, 0), Orientation.VERTICAL, BoatType.BATTLESHIP);
-        assertThrows(IllegalStateException.class, () -> {
-            gameBoard.placeBoat(new Position(1, 3), Orientation.HORIZONTAL, BoatType.DESTROYER);
-        });
+        assertThrows(IllegalStateException.class, () -> gameBoard.placeBoat(new Position(1, 3), Orientation.HORIZONTAL, BoatType.DESTROYER));
     }
 
     @Test

@@ -4,7 +4,7 @@ import java.util.ArrayList;
 
 public class Boat {
     private final Orientation orientation;
-    private final ArrayList<Position> positions = new ArrayList<Position>();
+    private final ArrayList<Position> positions = new ArrayList<>();
     private final BoatType type;
 
     public Boat(int x, int y, Orientation orientation, BoatType type) {
@@ -15,13 +15,18 @@ public class Boat {
             if (orientation == Orientation.VERTICAL) positions.add(new Position(x, y + i));
         }
     }
+
     public void getHitOnPosition(Position position) {
         positions.remove(position);
     }
 
-    public Orientation getOrientation() {return this.orientation; }
+    public Orientation getOrientation() {
+        return this.orientation;
+    }
 
-    public BoatType getType() { return type; }
+    public BoatType getType() {
+        return type;
+    }
 
     public ArrayList<Position> getPositions() {
         return positions;

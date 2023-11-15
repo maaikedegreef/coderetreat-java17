@@ -17,19 +17,21 @@ public class Player {
     }
 
     public void placeBoats(Boat[] boats) {
-        for (Boat boat : boats ) {
+        for (Boat boat : boats) {
             gameBoard.placeBoat(boat);
         }
     }
 
     public void fire(int x, int y) {
-        if (getStatus()!=Status.INPROGRESS) {
+        if (getStatus() != Status.INPROGRESS) {
             throw new IllegalStateException("The game is over, you can't fire anymore.");
         }
-        opponent.getGameBoard().fire(new Position(x,y));
+        opponent.getGameBoard().fire(new Position(x, y));
     }
 
-    public int getNumberOfBoats() {return gameBoard.getNumberOfBoats();}
+    public int getNumberOfBoats() {
+        return gameBoard.getNumberOfBoats();
+    }
 
     public Status getStatus() {
         if (gameBoard.isFinished()) return Status.NOWINNERS;

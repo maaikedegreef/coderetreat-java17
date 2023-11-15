@@ -23,23 +23,23 @@ public class GameBoard {
 
     public void placeBoat(Position position, Orientation orientation, BoatType type) {
         validateArgumentsOfPlacingBoat(position, orientation, type);
-        Boat boat = new Boat(position.getX(), position.getY(), orientation, type);
+        Boat boat = new Boat(position.x(), position.y(), orientation, type);
         validatePositionOfPlacingBoat(boat);
         boats.add(boat);
     }
 
     public void placeBoat(Boat boat) {
-        placeBoat(boat.getPositions().get(0), boat.getOrientation(), boat.getType() );
+        placeBoat(boat.getPositions().get(0), boat.getOrientation(), boat.getType());
     }
 
     private void validateArgumentsOfPlacingBoat(Position position, Orientation orientation, BoatType type) {
-        int x = position.getX();
-        int y = position.getY();
+        int x = position.x();
+        int y = position.y();
         //Check if they fit the grid
         if (orientation == Orientation.HORIZONTAL && (x < 0 || x + type.getSize() - 1 > size - 1 || y < 0 || y > size - 1))
-            throw new IllegalArgumentException("This " + new Boat(position.getX(), position.getY(), orientation, type) + " doesn't fit the grid");
+            throw new IllegalArgumentException("This " + new Boat(position.x(), position.y(), orientation, type) + " doesn't fit the grid");
         if (orientation == Orientation.VERTICAL && (x < 0 || x > size - 1 || y < 0 || y + type.getSize() - 1 > size - 1))
-            throw new IllegalArgumentException("This " + new Boat(position.getX(), position.getY(), orientation, type) + " doesn't fit the grid");
+            throw new IllegalArgumentException("This " + new Boat(position.x(), position.y(), orientation, type) + " doesn't fit the grid");
     }
 
     private void validatePositionOfPlacingBoat(Boat boat) {
@@ -75,6 +75,7 @@ public class GameBoard {
     private boolean isBoatOnPosition(Position position) {
         return getBoatOnPosition(position) != null;
     }
+
     private Boat getBoatOnPosition(Position position) {
         for (Boat boat : boats) {
             if (boat.isOnPosition(position)) return boat;
@@ -115,6 +116,6 @@ public class GameBoard {
     }
 
     public boolean isFinished() {
-        return misses.size()+hits.size()==size*size;
+        return misses.size() + hits.size() == size * size;
     }
 }
