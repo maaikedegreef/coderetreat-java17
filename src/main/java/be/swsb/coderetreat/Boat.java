@@ -3,11 +3,13 @@ package be.swsb.coderetreat;
 import java.util.ArrayList;
 
 public class Boat {
-    private Orientation orientation;
-    private ArrayList<Position> positions = new ArrayList<Position>();
+    private final Orientation orientation;
+    private final ArrayList<Position> positions = new ArrayList<Position>();
+    private final BoatType type;
 
     public Boat(int x, int y, Orientation orientation, BoatType type) {
         this.orientation = orientation;
+        this.type = type;
         for (int i = 0; i < type.getSize(); i++) {
             if (orientation == Orientation.HORIZONTAL) positions.add(new Position(x + i, y));
             if (orientation == Orientation.VERTICAL) positions.add(new Position(x, y + i));
@@ -16,6 +18,10 @@ public class Boat {
     public void getHitOnPosition(Position position) {
         positions.remove(position);
     }
+
+    public Orientation getOrientation() {return this.orientation; }
+
+    public BoatType getType() { return type; }
 
     public ArrayList<Position> getPositions() {
         return positions;
