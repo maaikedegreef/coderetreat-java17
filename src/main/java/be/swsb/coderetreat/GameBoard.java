@@ -28,6 +28,10 @@ public class GameBoard {
         boats.add(boat);
     }
 
+    public void placeBoat(Boat boat) {
+        placeBoat(boat.getPositions().get(0), boat.getOrientation(), boat.getType() );
+    }
+
     private void validateArgumentsOfPlacingBoat(Position position, Orientation orientation, BoatType type) {
         int x = position.getX();
         int y = position.getY();
@@ -110,4 +114,7 @@ public class GameBoard {
         boats.removeIf(boat -> boat.getPositions().isEmpty());
     }
 
+    public boolean isFinished() {
+        return boats.isEmpty() || misses.size()+hits.size()==size*size;
+    }
 }
