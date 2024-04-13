@@ -28,6 +28,7 @@ public class GameTest {
         Player player1 = new Player();
         Player player2 = new Player();
 
+        //kan in een game klasse
         player1.setOpponent(player2);
         player2.setOpponent(player1);
 

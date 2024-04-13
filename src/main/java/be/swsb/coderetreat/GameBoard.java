@@ -1,12 +1,14 @@
 package be.swsb.coderetreat;
 
 import java.util.ArrayList;
+import java.util.List;
 
 public class GameBoard {
     public static final int DEFAULT_SIZE = 10;
     private int size;
     private ArrayList<Boat> boats = new ArrayList<Boat>();
-    private ArrayList<Position> misses = new ArrayList<Position>();
+    //private list
+    private List<Position> misses = new ArrayList<Position>();
     private ArrayList<Position> hits = new ArrayList<Position>();
 
     public GameBoard() {
@@ -32,16 +34,18 @@ public class GameBoard {
         placeBoat(boat.getPositions().get(0), boat.getOrientation(), boat.getType());
     }
 
+    //validateBoatPlacing
     private void validateArgumentsOfPlacingBoat(Position position, Orientation orientation, BoatType type) {
         int x = position.x();
         int y = position.y();
         //Check if they fit the grid
+        //leesbaarder met aparte methods
         if (orientation == Orientation.HORIZONTAL && (x < 0 || x + type.getSize() - 1 > size - 1 || y < 0 || y > size - 1))
             throw new IllegalArgumentException("This " + new Boat(position.x(), position.y(), orientation, type) + " doesn't fit the grid");
         if (orientation == Orientation.VERTICAL && (x < 0 || x > size - 1 || y < 0 || y + type.getSize() - 1 > size - 1))
             throw new IllegalArgumentException("This " + new Boat(position.x(), position.y(), orientation, type) + " doesn't fit the grid");
     }
-
+    //benaming kan duidelijker
     private void validatePositionOfPlacingBoat(Boat boat) {
         for (Position position : boat.getPositions()) {
             if (isBoatOnPosition(position))
@@ -106,6 +110,7 @@ public class GameBoard {
             misses.add(position);
         } else {
             hits.add(position);
+            //niet nodig?
             getBoatOnPosition(position).getHitOnPosition(position);
         }
         checkForSunkenBoats();

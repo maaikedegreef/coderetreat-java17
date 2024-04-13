@@ -1,6 +1,7 @@
 package be.swsb.coderetreat;
 
 
+import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.*;
@@ -75,7 +76,11 @@ public class PlacingBoatTest {
     @Test
     public void placingBoat_placingOneShipHorizontallyOnX4Y4_ThrowsError() {
         GameBoard gameBoard = new GameBoard(5);
+        //assertj chaining? fluent api
         assertThrows(IllegalArgumentException.class, () -> gameBoard.placeBoat(new Position(4, 4), Orientation.HORIZONTAL, BoatType.DESTROYER));
+        Assertions.assertThatThrownBy(() -> gameBoard.placeBoat(new Position(4, 4), Orientation.HORIZONTAL, BoatType.DESTROYER))
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessage("Dit mag niet");
     }
 
     @Test
@@ -146,6 +151,7 @@ public class PlacingBoatTest {
         GameBoard gameBoard = new GameBoard(5);
         gameBoard.placeBoat(new Position(0, 0), Orientation.HORIZONTAL, BoatType.PATROLBOAT);
         assertEquals(gameBoard.getNumberOfBoats(), 1);
+        //actual en expected omgedraaid
         assertEquals(gameBoard.render(), """
                                             
                 🚢🌊🌊🌊🌊

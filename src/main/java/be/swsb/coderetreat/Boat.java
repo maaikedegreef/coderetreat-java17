@@ -4,6 +4,7 @@ import java.util.ArrayList;
 
 public class Boat {
     private final Orientation orientation;
+    // kan dit weg gewerkt worden?
     private final ArrayList<Position> positions = new ArrayList<>();
     private final BoatType type;
 
@@ -16,6 +17,7 @@ public class Boat {
         }
     }
 
+    //nodig?
     public void getHitOnPosition(Position position) {
         positions.remove(position);
     }
